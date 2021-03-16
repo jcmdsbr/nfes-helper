@@ -13,31 +13,30 @@ namespace NfeToCsv
             Arquivo = arquivo;
         }
 
+        private const string CABECALHO = "Cnpj;InscricaoMunicipal;RazaoSocial;Numero;DataEmissao;Valor;TomadorRazaoSocial;TomadorCnpj";
         private string Arquivo { get; }
-        private XmlDataDocument XmlDataDocument { get; set; } = new();
-
-        public void Dispose()
-        {
-            XmlDataDocument = null;
-        }
-
-        public XmlNodeList Get()
+        private XmlDataDocument LeitorXml { get; set; } = new();
+     
+        public XmlNodeList CarregarXml()
         {
             using var fs = new FileStream($"{Arquivo}.xml", FileMode.Open, FileAccess.Read);
-            XmlDataDocument.Load(fs);
-            return XmlDataDocument.GetElementsByTagName("ns2:Nfse");
+            LeitorXml.Load(fs);
+            return LeitorXml.GetElementsByTagName("ns2:Nfse");
         }
 
-        public static void TransformToCsv(List<Nfe> nfes)
+        public void CriarCsv(List<Nfe> nfes)
         {
             var builder = new StringBuilder();
-            builder.AppendLine(
-                "Cnpj;InscricaoMunicipal;RazaoSocial;Numero;DataEmissao;Valor;TomadorRazaoSocial;TomadorCnpj");
-            nfes.ForEach(book => { builder.AppendLine(book.ToString()); });
-            var lines = builder.ToString().Split('\n');
-            using var streamWriter = File.CreateText(@"example.csv");
-            foreach (var line in lines)
-                streamWriter.WriteLine(line);
+            builder.AppendLine(CABECALHO);
+            nfes.ForEach(nfe => { builder.AppendLine(nfe.ToString()); });
+            using var streamWriter = File.CreateText($"{Arquivo}.csv");
+            foreach (var linha in  builder.ToString().Split('\n'))
+                streamWriter.WriteLine(linha);
+        }
+        
+        public void Dispose()
+        {
+            LeitorXml = null;
         }
     }
 }

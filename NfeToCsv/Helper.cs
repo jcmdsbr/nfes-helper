@@ -5,7 +5,7 @@ namespace NfeToCsv
 {
     public static class Helper
     {
-        public static List<Nfe> NodeToList(XmlNodeList nodeList)
+        public static List<Nfe> ConverterXmlNode(XmlNodeList nodeList)
         {
             var nfes = new List<Nfe>();
 

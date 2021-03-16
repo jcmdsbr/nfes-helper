@@ -15,7 +15,6 @@ namespace NfeToCsv
         private const int SERVICO = 7;
         private const int PRESTADOR_SERVICO = 8;
         private const int TOMADOR_SERVICO = 9;
-        private const int ORGAO_GERADOR = 10;
 
         public string Cnpj { get; set; }
         public string InscricaoMunicipal { get; set; }
