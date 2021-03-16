@@ -13,7 +13,7 @@ namespace NfeToCsv
             Arquivo = arquivo;
         }
 
-        private const string CABECALHO = "Cnpj;InscricaoMunicipal;RazaoSocial;Numero;DataEmissao;Valor;TomadorRazaoSocial;TomadorCnpj";
+        private const string CABECALHO = "Numero;DataEmissao;Valor;TomadorRazaoSocial;TomadorCnpj";
         private string Arquivo { get; }
         private XmlDataDocument LeitorXml { get; set; } = new();
      

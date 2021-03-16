@@ -33,7 +33,7 @@ namespace NfeToCsv
         public override string ToString()
         {
             return
-                $"{Cnpj};{InscricaoMunicipal};{RazaoSocial};{Numero};{DataEmissao};{Valor};{TomadorRazaoSocial};{TomadorCnpj}";
+                $"{Numero};{DataEmissao};{Valor:C};{TomadorRazaoSocial};{TomadorCnpj}";
         }
 
         public static explicit operator Nfe(XmlNodeList nodeList)
@@ -47,7 +47,7 @@ namespace NfeToCsv
                 OptanteSimplesNascional = nodeList.Item(OPTANTE_SIMPLES_NASCIONAL)?.InnerText.Trim(),
                 IncentivadorCultural = nodeList.Item(INCENTIVADOR_CULTURAL)?.InnerText.Trim(),
                 Competencia = DateTime.Parse(nodeList.Item(COMPETENCIAS)?.InnerText.Trim() ?? string.Empty),
-                Valor = decimal.Parse(nodeList.Item(SERVICO)?.FirstChild?.FirstChild?.InnerText.Trim() ?? string.Empty),
+                Valor = decimal.Parse(nodeList.Item(SERVICO)?.FirstChild?.FirstChild?.InnerText.Trim().Replace(".", ",") ?? string.Empty),
                 Cnpj = nodeList.Item(PRESTADOR_SERVICO)?.FirstChild?.FirstChild?.InnerText.Trim(),
                 InscricaoMunicipal = nodeList.Item(PRESTADOR_SERVICO)?.FirstChild?.LastChild?.InnerText.Trim(),
                 RazaoSocial = nodeList.Item(PRESTADOR_SERVICO)?.ChildNodes?.Item(1)?.InnerText?.Trim(),
