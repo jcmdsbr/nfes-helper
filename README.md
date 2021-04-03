@@ -13,5 +13,5 @@ Se esse projeto te ajudou em alguma coisa, taquele pau na estrelinha \o/
 
 ## Descrição :books:
 
-- O sistema de consulta das NFes emitidas para contribuintes mudou e me ferrou, todo ano, eu preciso gerar uma lista de notas para meu pai que é autônomo e enviar para o contador, 
+- O sistema de consulta das NFes emitidas para contribuintes mudou e me ferrou, todo ano, eu preciso gerar uma lista de notas para meu pai que é autônomo e enviar para o contador. 
 - Desenvolvi esse console app simplesmente para ler os xmls e gerar algum arquivo mais "amigável" para ser enviado. 
